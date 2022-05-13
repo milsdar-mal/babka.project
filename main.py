@@ -1,5 +1,6 @@
 from tkinter import ttk
 import tkinter as tk
+from tkinter import *
 import sqlite3
 def set_data(instrument_id, name, manufacturer, aclass, picture, cost, in_the_store, in_the_warehouse):
     con1 = sqlite3.connect("database.db")
@@ -24,6 +25,12 @@ def View():
         print(row)
         tree.insert("", tk.END, values=row)
     con1.close()
+
+def Rebuild_row():
+    window2 = tk.Tk()
+    window2.title("Изменение лота")
+    l1 = Label(window2, text="первое поле")
+    l1.grid(column=0, row=0)
 
 # set_data(2,"гитара","бобровский мебельный завод","струнные","-","10000","да","да")
 # set_data(3,"балалайка","бобровский мебельный завод","струнные","-","5000","да","да")
@@ -51,4 +58,6 @@ tree.heading("#8", text="in the warehouse")
 tree.pack()
 button1 = tk.Button(text="Display data", command=View)
 button1.pack(pady=10)
+button2 = tk.Button(text="Refactor data", command=Rebuild_row)
+button2.pack(pady=10)
 window1.mainloop()
